@@ -44,17 +44,14 @@ function App() {
   const [tasks, setTasks] = useState(initialTasks)
   const [filter, setFilter] = useState('all')
 
-  // BUG 1: Filter not working - the filter logic is broken
   const filteredTasks = tasks.filter(task => {
     if (filter === 'all') return true
     if (filter === 'completed') return task.completed
     if (filter === 'pending') return !task.completed
-    // BUG: This condition will never work because we're comparing wrong values
-    if (filter === 'due-today') return task.dueDate === 'today' // Should compare with actual today's date
+    if (filter === 'due-today') return task.dueDate === 'today' 
     return true
   })
 
-  // BUG 2: Mark complete doesn't update UI - the function doesn't actually update state
   const markComplete = async (taskId) => {
     // Mock API call that "works" in backend
     console.log(`Marking task ${taskId} as complete...`)
@@ -62,7 +59,6 @@ function App() {
     // Simulate API delay
     await new Promise(resolve => setTimeout(resolve, 500))
     
-    // BUG: This line is commented out, so the UI never updates
     // setTasks(tasks.map(task => 
     //   task.id === taskId ? { ...task, completed: !task.completed } : task
     // ))
@@ -72,8 +68,7 @@ function App() {
 
   // BUG 3: Error on hover - accessing undefined property
   const handleTaskHover = (task) => {
-    // BUG: Trying to access a property that doesn't exist
-    console.log(`Hovering over task with category: ${task.category.name}`) // task.category is undefined
+    console.log(`Hovering over task with category: ${task.category.name}`)
   }
 
   const getTodayString = () => {
@@ -145,13 +140,13 @@ function App() {
               <div 
                 key={task.id} 
                 className={`task-item ${task.completed ? 'completed' : ''}`}
-                onMouseEnter={() => handleTaskHover(task)} // BUG 3: This will cause an error
+                onMouseEnter={() => handleTaskHover(task)} 
               >
                 <div className="task-checkbox">
                   <input 
                     type="checkbox" 
                     checked={task.completed}
-                    onChange={() => markComplete(task.id)} // BUG 2: Won't update UI
+                    onChange={() => markComplete(task.id)} 
                   />
                 </div>
                 <div className="task-content">

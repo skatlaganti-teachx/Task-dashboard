@@ -1,0 +1,3 @@
+  // BUG 1: Filter not working - the filter logic is broken
+  // BUG 2: Mark complete doesn't update UI - the function doesn't actually update state
+  // BUG 3: Error on hover - accessing undefined property
