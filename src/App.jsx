@@ -66,7 +66,6 @@ function App() {
     console.log(`Task ${taskId} marked as complete in backend!`)
   }
 
-  // BUG 3: Error on hover - accessing undefined property
   const handleTaskHover = (task) => {
     console.log(`Hovering over task with category: ${task.category.name}`)
   }
