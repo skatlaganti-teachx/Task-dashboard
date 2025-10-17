@@ -1,4 +1,4 @@
-# Bugged Task Dashboard
+# Task Dashboard
 
 A React dashboard built with Vite.
 
